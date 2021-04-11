@@ -18,10 +18,12 @@ namespace DemoImplementation
             foreach (var person in people)
             {
                 Regex rgx = new Regex("[^a-zA-Z0-9]");
-                var name = string.Format("{0}{1}", rgx.Replace(person.Name, ""), rgx.Replace(person.Id, ""));
+                //Nie bardzo wiem jaki mają mieć format wyjściowo te dane, więc po prostu to ze sobą połączyłem wycinająć wszystko poza dozwolonymi znakami
+                var name = rgx.Replace(string.Format("{0}{1}", person.Name, person.Id), "");
 
                 foreach (var email in person.Emails)
                 {
+                    //Tak samo z tym formatem emaila, brakuje jakiegoś przykłady z formatem wyjściowym
                     var formattedEmail = string.Format("Email: {0}, EmailType: {1}", email.Email, email.EmailType);
                     result.Add(new DemoTarget.PersonWithEmail()
                     {
